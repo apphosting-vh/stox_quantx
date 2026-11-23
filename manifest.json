@@ -5,9 +5,15 @@
   "start_url": "./",
   "display": "standalone",
   "background_color": "#0a0e17",
-  "theme_color": "#00e5ff",
+  "theme_color": "#07111f",
   "orientation": "portrait-primary",
   "icons": [
+    {
+      "src": "icons/stox-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
     {
       "src": "icons/icon-192.png",
       "sizes": "192x192",
