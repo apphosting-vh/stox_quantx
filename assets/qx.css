@@ -1,3 +1,6 @@
+/* Source copy of QuantX v1.6.23 styles. Do not link this file directly:
+ * scripts/build.mjs scopes every selector under `.qx-root` and writes the
+ * result to dist/assets/qx.css. See MIGRATION.md. */
 .qx-root,
   .qx-root[data-theme="midnight-cyan"]{
   --bg: #0b1220; --bg-2: #111b2e; --panel: #131f35; --panel-2: #182743;
@@ -319,7 +322,7 @@
   .qx-root .index-strip-meta{ font-size: 9px; padding-left: 6px; }
   .qx-root .theme-grid{ grid-template-columns: 1fr; }
 }
-/* Embedded in StoX: hide QuantX's own shell, keep only its three feature panes. */
+/* Embedded in StoX: hide QuantX's own shell, keep only its feature panes. */
 .qx-root.qx-embedded .sidebar,
 .qx-root.qx-embedded .topbar { display: none; }
 .qx-root.qx-embedded .app-shell { grid-template-columns: 1fr; }

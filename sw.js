@@ -1,4 +1,8 @@
-const CACHE_NAME = 'stox-7.10.1-1f96c477f9e6';
+/* BUILD TEMPLATE: this file lives at src/sw.js. scripts/build.mjs replaces
+ * CACHE_NAME and urlsToCache in the generated dist/sw.js with the current
+ * hashed bundles (including qx.js/qx.css). See MIGRATION.md.
+ * Do not hand-edit dist/sw.js. */
+const CACHE_NAME = 'stox-8.0.0-5f7346b2eb4f';
 const urlsToCache = [
   './',
   './index.html',

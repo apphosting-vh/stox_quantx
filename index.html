@@ -476,6 +476,46 @@ button:focus-visible,a:focus-visible,[role="button"]:focus-visible,select:focus-
   border-right:1px solid var(--border);
 }
 
+/* ── Live indices running strip (ported from QuantX) ── */
+.stx-index-ticker{
+  position:sticky;top:0;z-index:950;
+  flex:0 0 auto;display:flex;align-items:center;gap:10px;
+  height:34px;padding:0 12px;overflow:hidden;
+  background:var(--sidebar-bg);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  color:var(--text);font-family:var(--font-body);
+}
+.stx-index-ticker::before,.stx-index-ticker::after{
+  content:'';position:absolute;top:0;bottom:0;width:28px;z-index:1;pointer-events:none;
+}
+.stx-index-ticker::before{left:0;background:linear-gradient(90deg,var(--sidebar-bg),transparent)}
+.stx-index-ticker::after{right:0;background:linear-gradient(270deg,var(--sidebar-bg),transparent)}
+.stx-index-ticker .index-strip-track{
+  display:flex;gap:8px;width:max-content;min-width:100%;padding-left:2px;
+  animation:stx-index-marquee 42s linear infinite;
+}
+.stx-index-ticker:hover .index-strip-track{animation-play-state:paused}
+.stx-index-ticker[data-empty="true"] .index-strip-track{animation:none}
+.stx-index-ticker .index-chip{
+  display:inline-flex;align-items:center;gap:7px;padding:4px 9px;border-radius:999px;
+  font-size:10px;font-weight:600;white-space:nowrap;
+  background:var(--accentbg2);border:1px solid var(--border);color:var(--text);
+}
+.stx-index-ticker .index-chip.up .index-chg{color:var(--accent)}
+.stx-index-ticker .index-chip.down .index-chg{color:#f87171}
+.stx-index-ticker .index-chip.muted{color:var(--text3)}
+.stx-index-ticker .index-name{color:var(--text2);font-weight:700}
+.stx-index-ticker .index-ltp{font-variant-numeric:tabular-nums;color:var(--text)}
+.stx-index-ticker .index-chg{font-variant-numeric:tabular-nums;color:var(--text3)}
+.stx-index-ticker .index-strip-meta{
+  flex:0 0 auto;margin-left:auto;padding-left:10px;
+  font-size:9px;color:var(--text3);white-space:nowrap;
+  position:relative;z-index:2;background:var(--sidebar-bg);
+}
+@keyframes stx-index-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.stx-index-ticker .index-strip-track{animation:none}}
+
 /* ── Mobile bottom nav ── */
 .stx-botnav{display:none}
 @media(max-width:768px){
@@ -621,7 +661,7 @@ html,body,.stx-card,.stx-statcard,.stx-btn,.inp,.stx-botnav,.stx-botnav-item,
 }
 </style>
   <link rel="stylesheet" href="./assets/qx.css">
-  <script>var STOX_APP_VERSION = "7.10.1";</script>
+  <script>var STOX_APP_VERSION = "8.0.0";</script>
 </head>
 <body>
 <div id="root"><style>
@@ -853,6 +893,10 @@ html,body,.stx-card,.stx-statcard,.stx-btn,.inp,.stx-botnav,.stx-botnav-item,
   </div>
 </div>
 </div>
+<!-- BUILD TEMPLATE: this file lives at src/index.html. scripts/build.mjs reads
+     these text/babel tags in order (src/stox/*.js) to create dist/assets/app.js.
+     It also injects vendor.js, xlsx.js, qx.js and the scoped qx.css into the
+     generated dist/index.html. Do not reorder these tags. See MIGRATION.md. -->
 <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script defer src="./assets/vendor.js"></script>
   <script defer src="./assets/xlsx.js"></script>
