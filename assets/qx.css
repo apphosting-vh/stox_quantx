@@ -274,9 +274,9 @@
 .qx-root .chart{ width: 100%; height: auto; aspect-ratio: 720 / 280; background: var(--chart-bg); border: 1px solid color-mix(in srgb, var(--border) 65%, transparent); border-radius: 12px; display:block; touch-action: pan-y; }
 .qx-root .chart-full{ aspect-ratio: 1200 / 760; min-height: 520px; }
 .qx-root .charts-controls{ display:grid; grid-template-columns: minmax(220px,1.2fr) minmax(280px,1.6fr) minmax(220px,1fr) minmax(220px,1fr); gap:10px; align-items:end; }
-.qx-root .charts-layout{ grid-template-columns: minmax(0, 1fr) 360px; }
-.qx-root .chart-drawer{ top: 14px; }
-@media (max-width: 1400px) { .qx-root .charts-controls{ grid-template-columns: 1fr 1fr; } .qx-root .charts-layout{ grid-template-columns: 1fr; } }
+.qx-root .charts-layout{ grid-template-columns: minmax(0, 1fr) 420px; }
+.qx-root .chart-drawer{ top: 14px; max-height: calc(100vh - 28px); overflow-y: auto; overscroll-behavior: contain; padding-right: 2px; }
+@media (max-width: 1400px) { .qx-root .charts-controls{ grid-template-columns: 1fr 1fr; } .qx-root .charts-layout{ grid-template-columns: 1fr; } .qx-root .chart-drawer{ max-height: none; overflow: visible; padding-right: 0; } }
 .qx-root .muted{ color: var(--muted); }
 .qx-root .small{ font-size: 12px; }
 .qx-root .progress{ height: 6px; background: color-mix(in srgb, var(--input-bg) 70%, var(--bg)); border: 1px solid color-mix(in srgb, var(--border) 50%, transparent); border-radius: 999px; overflow: hidden; }
