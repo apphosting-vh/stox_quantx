@@ -2,7 +2,7 @@
  * CACHE_NAME and urlsToCache in the generated dist/sw.js with the current
  * hashed bundles (including qx.js/qx.css). See MIGRATION.md.
  * Do not hand-edit dist/sw.js. */
-const CACHE_NAME = 'stox-8.0.0-3af9a3a21c0a';
+const CACHE_NAME = 'stox-8.0.0-0e6fe64ad2ff';
 const urlsToCache = [
   './',
   './index.html',
@@ -10,6 +10,7 @@ const urlsToCache = [
   './assets/xlsx.js',
   './assets/qx.js',
   './assets/qx.css',
+  './assets/ui.css',
   './assets/app.js',
   './manifest.json',
   './icons/stox-icon.svg',

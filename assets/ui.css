@@ -1,0 +1,213 @@
+/* StoX UI normalization.
+ *
+ * Loaded after qx.css so the embedded QuantX panes and the original StoX
+ * screens share one set of control metrics. Layout (width/flex) and semantic
+ * colours stay with each screen; only the shared shape/typography is enforced
+ * here. This is intentionally a separate generated asset so it can be updated
+ * without touching the original browser scripts or the scoped QuantX CSS.
+ */
+
+:root{
+  --ui-control-h:38px;
+  --ui-control-pad:9px 12px;
+  --ui-control-r:var(--r-md);
+  --ui-pill-h:24px;
+  --ui-pill-pad:3px 10px;
+  --ui-pill-r:var(--r-pill);
+  --ui-hero-pad:20px 22px;
+
+  /* Backward-compatible aliases for tokens still referenced by older screens. */
+  --bg1:var(--bg2);
+  --accentborder:var(--accentbg5);
+  --cardbg2:var(--card2);
+  --border6:var(--border3);
+}
+
+/* ── Fields, textareas and dropdowns ── */
+html body input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]),
+html body select,
+html body textarea{
+  box-sizing:border-box!important;
+  min-height:var(--ui-control-h)!important;
+  padding:var(--ui-control-pad)!important;
+  border:1px solid var(--border)!important;
+  border-radius:var(--ui-control-r)!important;
+  background-color:var(--inp-bg)!important;
+  background-image:none!important;
+  color:var(--text)!important;
+  font-family:var(--font-body)!important;
+  font-size:13px!important;
+  font-weight:500!important;
+  line-height:1.4!important;
+  letter-spacing:0!important;
+  outline:none!important;
+  transition:border-color .2s var(--ease-out),box-shadow .2s var(--ease-out),background-color .2s var(--ease-out)!important;
+}
+html body input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]):hover,
+html body select:hover,
+html body textarea:hover{border-color:var(--border3)!important}
+html body input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]):focus,
+html body select:focus,
+html body textarea:focus{
+  border-color:var(--accent)!important;
+  box-shadow:0 0 0 3px var(--accentbg3)!important;
+}
+html body input::placeholder,
+html body textarea::placeholder{color:var(--text6)!important;opacity:1!important}
+html body textarea{min-height:76px!important;resize:vertical!important}
+
+html body select{
+  -webkit-appearance:none!important;
+  appearance:none!important;
+  cursor:pointer!important;
+  padding-right:34px!important;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")!important;
+  background-repeat:no-repeat!important;
+  background-position:right 11px center!important;
+  background-size:14px 14px!important;
+}
+html body select option{background:var(--inp-opt)!important;color:var(--text)!important}
+
+/* ── Pills / badges / chips ── */
+html body .stx-badge,
+html body .stx-profit,
+html body .stx-loss,
+html body .stx-warn,
+html body .stx-info,
+html body .pill,
+html body .badge,
+html body .chip,
+html body .qx-root .pill,
+html body .qx-root .badge,
+html body .qx-root .chip,
+html body .signal-pill,
+html body .gate-pill{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:4px!important;
+  min-height:var(--ui-pill-h)!important;
+  padding:var(--ui-pill-pad)!important;
+  border-radius:var(--ui-pill-r)!important;
+  font-family:var(--font-body)!important;
+  font-size:11px!important;
+  font-weight:600!important;
+  letter-spacing:.2px!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+  vertical-align:middle!important;
+}
+html body .stx-profit,
+html body .stx-loss,
+html body .stx-warn,
+html body .stx-info{border-width:1px!important;border-style:solid!important}
+
+html body .stx-badge--compact{
+  min-height:20px!important;
+  padding:2px 8px!important;
+  font-size:10px!important;
+}
+html body .stx-badge--micro{
+  min-height:16px!important;
+  padding:1px 5px!important;
+  border-radius:6px!important;
+  font-size:9px!important;
+}
+html body .stx-badge--status{min-height:28px!important;padding:6px 14px!important}
+html body .stx-status-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--accent);flex-shrink:0;
+}
+html body .qx-root .pill--micro{
+  min-height:16px!important;
+  padding:0 5px!important;
+  font-size:9px!important;
+}
+html body .qx-root .pill-row{display:flex;flex-wrap:wrap;gap:6px}
+html body .qx-root .link-strong{
+  color:var(--accent);
+  text-decoration:underline;
+  text-decoration-color:color-mix(in srgb, var(--accent) 35%, transparent);
+  text-underline-offset:2px;
+}
+
+/* ── Buttons ── */
+html body .stx-btn,
+html body .qx-root .btn{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:6px!important;
+  min-height:38px!important;
+  padding:9px 13px!important;
+  border-radius:10px!important;
+  font-family:var(--font-body)!important;
+  font-size:13px!important;
+  font-weight:600!important;
+  line-height:1!important;
+  letter-spacing:.01em!important;
+  white-space:nowrap!important;
+}
+html body .qx-root .btn.btn-compact,
+html body .qx-root .btn[title]{
+  min-height:28px!important;
+  padding:4px 8px!important;
+  font-size:12px!important;
+}
+html body .stx-btn--sm{
+  min-height:28px!important;
+  padding:5px 10px!important;
+  border-radius:7px!important;
+  font-size:11px!important;
+}
+html body .stx-btn--xs{
+  min-height:22px!important;
+  padding:3px 8px!important;
+  border-radius:5px!important;
+  font-size:9px!important;
+}
+
+/* ── Hero / identity cards ── */
+html body .stx-hero{
+  position:relative!important;
+  padding:var(--ui-hero-pad)!important;
+  border:1px solid var(--border)!important;
+  border-radius:var(--r-lg)!important;
+  background:linear-gradient(135deg,var(--card),var(--card2))!important;
+  box-shadow:var(--shadow-md)!important;
+  backdrop-filter:blur(var(--glass-blur));
+  -webkit-backdrop-filter:blur(var(--glass-blur));
+  overflow:hidden!important;
+}
+html body .stx-hero::before{
+  content:'';position:absolute;inset:0 0 auto;height:2px;
+  background:linear-gradient(90deg,var(--accent),transparent 70%);
+  opacity:.7;pointer-events:none;
+}
+
+html body .stx-card--dense{padding:10px 14px!important}
+html body .stx-card--flush{padding:0!important;overflow:hidden!important}
+html body .stx-card-header{
+  display:flex;align-items:center;gap:8px;
+  padding:12px 16px;border-bottom:1px solid var(--border);
+  background:var(--bg5);
+}
+html body .stx-feature-panel{
+  padding:10px 14px!important;border-radius:var(--r-md)!important;
+  background:var(--bg4)!important;border:1px solid var(--border)!important;
+}
+html body .stx-field-label{
+  display:block;margin-bottom:4px;
+  font-size:10px;font-weight:600;color:var(--text5);
+  text-transform:uppercase;letter-spacing:.4px;
+}
+
+html body .qx-root .panel-compact{padding:12px!important}
+html body .stx-toast-persistent{
+  border-color:var(--accent)!important;
+  box-shadow:var(--shadow-md)!important;
+}
+
+@media (max-width:640px){
+  :root{--ui-hero-pad:16px 16px;--ui-control-pad:8px 11px}
+}
