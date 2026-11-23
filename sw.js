@@ -1,9 +1,11 @@
-const CACHE_NAME = 'stox-7.10.1-0fc8f29f863d';
+const CACHE_NAME = 'stox-7.10.1-1f96c477f9e6';
 const urlsToCache = [
   './',
   './index.html',
   './assets/vendor.js',
   './assets/xlsx.js',
+  './assets/qx.js',
+  './assets/qx.css',
   './assets/app.js',
   './manifest.json',
   './rows.json'
