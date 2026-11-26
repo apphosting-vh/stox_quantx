@@ -196,6 +196,11 @@ html body .stx-feature-panel{
   padding:10px 14px!important;border-radius:var(--r-md)!important;
   background:var(--bg4)!important;border:1px solid var(--border)!important;
 }
+html body .stx-pillar-flash{
+  outline:2px solid var(--accent)!important;
+  outline-offset:3px!important;
+  border-radius:8px!important;
+}
 html body .stx-field-label{
   display:block;margin-bottom:4px;
   font-size:10px;font-weight:600;color:var(--text5);
