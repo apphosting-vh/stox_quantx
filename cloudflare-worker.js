@@ -5,7 +5,7 @@
    1. Create free account: https://dash.cloudflare.com/sign-up
    2. Dashboard → Workers & Pages → Create → Create Worker → name it (e.g. "stock-proxy") → Deploy
    3. Click "Edit code", delete everything, paste this entire file, click Deploy.
-   4. Your endpoint is: https://young-unit-81fc.lenovotabpro99.workers.dev/?url=<encoded-url>
+   4. Your endpoint is: https://stock-proxy.<your-subdomain>.workers.dev/?url=<encoded-url>
    5. Test in browser:
       https://stock-proxy.<your-subdomain>.workers.dev/?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FRELIANCE.NS%3Finterval%3D1d%26range%3D1d
       → should print JSON chart data.
@@ -35,11 +35,23 @@ export default {
       return new Response(null, { status: 204, headers: CORS_HEADERS });
     }
 
-    const raw = new URL(request.url).searchParams.get("url");
-    if (!raw) return jsonError("Missing ?url= parameter", 400);
-
+    const params = new URL(request.url).searchParams;
+    const raw = params.get("url");
     let target;
-    try { target = new URL(raw); } catch (e) { return jsonError("Invalid url parameter", 400); }
+    if (raw) {
+      try { target = new URL(raw); } catch (e) { return jsonError("Invalid url parameter", 400); }
+    } else {
+      // App-style chart/proxy requests send symbol/range/interval instead of a
+      // full ?url=. Accept both shapes so one deployment works for every call.
+      const symbol = params.get("symbol");
+      if (!symbol) return jsonError("Missing ?url= or ?symbol= parameter", 400);
+      const range = params.get("range") || "2y";
+      const interval = params.get("interval") || "1d";
+      target = new URL(
+        "https://query1.finance.yahoo.com/v8/finance/chart/" + encodeURIComponent(symbol)
+        + "?range=" + encodeURIComponent(range) + "&interval=" + encodeURIComponent(interval)
+      );
+    }
     if (!ALLOWED_HOSTS.includes(target.hostname)) {
       return jsonError("Host not allowed: " + target.hostname, 403);
     }

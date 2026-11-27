@@ -2,7 +2,7 @@
  * CACHE_NAME and urlsToCache in the generated dist/sw.js with the current
  * hashed bundles (including qx.js/qx.css). See MIGRATION.md.
  * Do not hand-edit dist/sw.js. */
-const CACHE_NAME = 'stox-9.1.0-1c0ca729bfa1';
+const CACHE_NAME = 'stox-9.1.0-2189459408f7';
 const urlsToCache = [
   './',
   './index.html',
@@ -35,7 +35,9 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
+      /* Only retire this app's own caches. Deleting every origin cache wipes
+         unrelated apps/data that happen to share the same host. */
+      Promise.all(keys.filter(k => k !== CACHE_NAME && k.indexOf('stox-') === 0).map(k => caches.delete(k)))
     ).then(() => self.clients.claim())
   );
 });

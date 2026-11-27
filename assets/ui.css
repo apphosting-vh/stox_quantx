@@ -28,18 +28,12 @@ html body input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):n
 html body select,
 html body textarea{
   box-sizing:border-box!important;
-  min-height:var(--ui-control-h)!important;
-  padding:var(--ui-control-pad)!important;
   border:1px solid var(--border)!important;
   border-radius:var(--ui-control-r)!important;
   background-color:var(--inp-bg)!important;
   background-image:none!important;
   color:var(--text)!important;
   font-family:var(--font-body)!important;
-  font-size:13px!important;
-  font-weight:500!important;
-  line-height:1.4!important;
-  letter-spacing:0!important;
   outline:none!important;
   transition:border-color .2s var(--ease-out),box-shadow .2s var(--ease-out),background-color .2s var(--ease-out)!important;
 }
@@ -86,14 +80,8 @@ html body .gate-pill{
   align-items:center!important;
   justify-content:center!important;
   gap:4px!important;
-  min-height:var(--ui-pill-h)!important;
-  padding:var(--ui-pill-pad)!important;
   border-radius:var(--ui-pill-r)!important;
   font-family:var(--font-body)!important;
-  font-size:11px!important;
-  font-weight:600!important;
-  letter-spacing:.2px!important;
-  line-height:1!important;
   white-space:nowrap!important;
   vertical-align:middle!important;
 }
@@ -138,14 +126,9 @@ html body .qx-root .btn{
   align-items:center!important;
   justify-content:center!important;
   gap:6px!important;
-  min-height:38px!important;
-  padding:9px 13px!important;
   border-radius:10px!important;
   font-family:var(--font-body)!important;
-  font-size:13px!important;
-  font-weight:600!important;
   line-height:1!important;
-  letter-spacing:.01em!important;
   white-space:nowrap!important;
 }
 html body .qx-root .btn.btn-compact,
